@@ -54,6 +54,7 @@ void mousePressed() {
   } else if (overRect2  && screen == 0) {
     //Go to treasure hunt
     screen = 2;
+    treasureView.reset();
   } else if (overBack && (screen == 1 || screen == 2)) {
     screen = 0;
   }

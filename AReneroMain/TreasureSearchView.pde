@@ -5,11 +5,19 @@ public class TreasureSearchView extends KinectView {
   
   private PImage treasureImage ;
   
+  private int score;
+  
   public TreasureSearchView(Kinect k, color rectColor, int backX, int backY, int backSizeX,int backSizeY) {
     super(k, rectColor, backX, backY, backSizeX, backSizeY);
     treasureImage = loadImage("treasure.png");    
     treasures = new ArrayList<TreasureSpot>();
     discoveredTreasures = new ArrayList<TreasureSpot>();
+  }
+  
+  public void reset() {
+    score = 0;
+    discoveredTreasures.clear();
+    treasures.clear();
   }
   
   private boolean placeTreasure() {
@@ -42,7 +50,7 @@ public class TreasureSearchView extends KinectView {
       }
     }
     if (treasure != null) {
-      println("Tesoro encontrado");
+      score ++;
       treasures.remove(treasure);
       treasure.setDiscover();
       discoveredTreasures.add(treasure);
@@ -51,7 +59,6 @@ public class TreasureSearchView extends KinectView {
   
   @Override
   protected void drawTreasures() {
-    println("comenzar a dibujar: ", discoveredTreasures.size());
    ArrayList<TreasureSpot> aux = new ArrayList<TreasureSpot>();
    for(TreasureSpot t: discoveredTreasures) {
      if (t.hasExpired()) {
@@ -63,5 +70,9 @@ public class TreasureSearchView extends KinectView {
    for(TreasureSpot t: aux) {
        discoveredTreasures.remove(t);
    }
+   
+   textSize(32);
+   fill(255, 255, 255);
+   text("Score: " + score, 100, 32); 
   }  
 }
