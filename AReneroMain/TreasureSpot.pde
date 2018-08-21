@@ -28,6 +28,6 @@ public class TreasureSpot {
   }
   
   public boolean hasExpired() {
-    return ((millis() - discoverTime) > 3.0);
+    return ((millis() - discoverTime) > 3000.0);
   }
 }

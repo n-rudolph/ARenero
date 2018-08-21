@@ -22,8 +22,6 @@ public class KinectView {
   public KinectView() {}
   public KinectView(Kinect k, color rectColor, int backX, int backY, int backSizeX,int backSizeY) {
     kinect = k;
-    kinect.initDepth();
-    kinect.setTilt(0);
     
     // Lookup table for all possible depth values (0 - 2047)
     for (int i = 0; i < depthLookUp.length; i++) {

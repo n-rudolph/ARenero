@@ -22,6 +22,8 @@ void setup() {
   surface.setResizable(true);
   menuView = new Menu(height, width);
   Kinect k  = new Kinect(this);
+  k.initDepth();
+  k.setTilt(0);
   
   backSizeX = 75;
   backSizeY = 40;

@@ -30,10 +30,9 @@ public class TreasureSearchView extends KinectView {
   
   @Override
   protected void checkTreasure(int x, int y, float depth) {
-    if (treasures.size() == 0) {
-      while (treasures.size() < 10) {
-        placeTreasure();
-      }
+    while (treasures.size() < 5) {
+      println ("treasure added");
+      placeTreasure();
     }
     TreasureSpot treasure = null;
     for (TreasureSpot spot: treasures) {
@@ -43,20 +42,26 @@ public class TreasureSearchView extends KinectView {
       }
     }
     if (treasure != null) {
+      println("Tesoro encontrado");
       treasures.remove(treasure);
-      while(!placeTreasure()) {}
       treasure.setDiscover();
       discoveredTreasures.add(treasure);
     }
   }
   
+  @Override
   protected void drawTreasures() {
+    println("comenzar a dibujar: ", discoveredTreasures.size());
+   ArrayList<TreasureSpot> aux = new ArrayList<TreasureSpot>();
    for(TreasureSpot t: discoveredTreasures) {
      if (t.hasExpired()) {
-       discoveredTreasures.remove(t);
+       aux.add(t);
      } else {
-       image(treasureImage, t.getXCoord(), t.getYCoord(), 20, 20);
+       image(treasureImage, t.getXCoord(), t.getYCoord(), 100, 100);
      }
+   }
+   for(TreasureSpot t: aux) {
+       discoveredTreasures.remove(t);
    }
   }  
 }
