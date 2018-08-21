@@ -17,8 +17,7 @@ boolean overBack = false;
 int screen = 0;
 
 void setup() {
-  //size(1460, 1260);
-  size(680, 480);
+  fullScreen();
   surface.setResizable(true);
   menuView = new Menu(height, width);
   Kinect k  = new Kinect(this);

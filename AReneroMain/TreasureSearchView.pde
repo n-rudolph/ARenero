@@ -39,7 +39,6 @@ public class TreasureSearchView extends KinectView {
   @Override
   protected void checkTreasure(int x, int y, float depth) {
     while (treasures.size() < 5) {
-      println ("treasure added");
       placeTreasure();
     }
     TreasureSpot treasure = null;

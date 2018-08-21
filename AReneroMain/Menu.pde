@@ -3,6 +3,9 @@ public class Menu {
   int rect1X, rect1Y, rect2X, rect2Y;
   int rectSize, backSizeX, backSizeY;
   color rect1Color, rect2Color;
+  
+  PImage backgroundImg;
+  PImage logo;
 
   public Menu(int height, int width) {
     rectSize = 100;
@@ -14,10 +17,13 @@ public class Menu {
     rect1Y = height/2 - rectSize/ 2;
     rect2X = width/2 + 30;
     rect2Y = height/2 - rectSize/ 2;
+    
+    backgroundImg = loadImage("menu.jpg");
+    logo = loadImage("logo.png");
   }
   
   public void drawMenu() {
-    background(255, 204, 0);
+    image(backgroundImg, 0, 0, width, height);
   
     fill(rect1Color);  
     stroke(rect1Color);
@@ -27,10 +33,8 @@ public class Menu {
     stroke(rect2Color);
     rect(rect2X, rect2Y, rectSize, rectSize);
     
-    textAlign(CENTER);
-    fill(255);
-    textSize(30);
-    text("ARenero", width/2, height/2 - 75);
+    
+   image(logo, width/2 - 150, height/2 - 300, 300, 300);
   }
   
   public boolean isOverRect1(){
