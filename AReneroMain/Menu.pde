@@ -46,11 +46,11 @@ public class Menu {
   }
   
   public boolean isOverRect1(){
-    return Utils.overRect(rect1X, rect1Y, rectSize, rectSize, mouseX, mouseY);
+    return Utils.overRect(rect1X, rect1Y, rectSize*2, rectSize, mouseX, mouseY);
   }
   
   public boolean isOverRect2(){
-    return Utils.overRect(rect2X, rect2Y, rectSize, rectSize, mouseX, mouseY);
+    return Utils.overRect(rect2X, rect2Y, rectSize*2, rectSize, mouseX, mouseY);
   }
   
 }

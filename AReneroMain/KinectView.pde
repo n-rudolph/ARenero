@@ -16,11 +16,10 @@ public class KinectView {
   protected int[] depth;
   protected float[] depthLookUp = new float[2048];
   
-  private color rect2Color;
   private int backX, backY, backSizeX, backSizeY;
   
   public KinectView() {}
-  public KinectView(Kinect k, color rectColor, int backX, int backY, int backSizeX,int backSizeY) {
+  public KinectView(Kinect k) {
     kinect = k;
     
     // Lookup table for all possible depth values (0 - 2047)
@@ -28,11 +27,10 @@ public class KinectView {
       depthLookUp[i] = rawDepthToMeters(i);
     }
     
-    this.rect2Color = rectColor;
-    this.backX = backX;
-    this.backY = backY;
-    this.backSizeX = backSizeX;
-    this.backSizeY = backSizeY;
+    backY = 0;
+    backSizeX = 150;
+    backSizeY = 60;
+    backX = width - backSizeX;  
   }
   
   public void drawView() {
@@ -100,9 +98,18 @@ public class KinectView {
   }
   
   void drawBack() {
-    fill(rect2Color);
-    stroke(rect2Color);
+    fill(255, 251, 175);
+    stroke(0);
+    strokeWeight(5);
     rect(backX, backY, backSizeX, backSizeY);
+    
+    textSize(32);
+    fill(0);
+    text("BACK", backX + 35, backY + 42);
+  }
+  
+  public boolean isOverBack(){
+    return Utils.overRect(backX, backY, backSizeX, backSizeY, mouseX, mouseY);
   }
 
 }

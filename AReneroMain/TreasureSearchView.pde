@@ -7,8 +7,8 @@ public class TreasureSearchView extends KinectView {
   
   private int score;
   
-  public TreasureSearchView(Kinect k, color rectColor, int backX, int backY, int backSizeX,int backSizeY) {
-    super(k, rectColor, backX, backY, backSizeX, backSizeY);
+  public TreasureSearchView(Kinect k) {
+    super(k);
     treasureImage = loadImage("treasure.png");    
     treasures = new ArrayList<TreasureSpot>();
     discoveredTreasures = new ArrayList<TreasureSpot>();

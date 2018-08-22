@@ -4,8 +4,8 @@ import org.openkinect.freenect.*;
 int y;
 
 Menu menuView;
-int backX, backY, rectSize, backSizeX, backSizeY;
-color backgroundColor, rect2Color;
+
+color backgroundColor;
 
 KinectView kinectView;
 TreasureSearchView treasureView;
@@ -24,15 +24,10 @@ void setup() {
   k.initDepth();
   k.setTilt(0);
   
-  backSizeX = 75;
-  backSizeY = 40;
   backgroundColor = color(1);
-  rect2Color = color(55);
-  backX = width - backSizeX;
-  backY = 0;
   
-  kinectView = new KinectView(k, rect2Color, backX, backY, backSizeX, backSizeY);
-  treasureView = new TreasureSearchView(k, rect2Color, backX, backY, backSizeX, backSizeY);
+  kinectView = new KinectView(k);
+  treasureView = new TreasureSearchView(k);
 }
 
 void draw() {
@@ -63,26 +58,18 @@ void checkMousePosition() {
   switch(screen) {
     case 0:
       overBack = false;
-      if (menuView.isOverRect1()) {
-        overRect1 = true;
-        overRect2 = false;
-      } else if (menuView.isOverRect2()) {
-        overRect1 = false;
-        overRect2 = true;
-      } else {
-        overRect1 = false;
-        overRect2 = false;
-      } 
+      overRect1 = menuView.isOverRect1();
+      overRect2 = menuView.isOverRect2();
       break;
     case 1:
+      overRect1 = false;
+      overRect2 = false;
+      overBack = kinectView.isOverBack();
+      break;
     case 2:
       overRect1 = false;
       overRect2 = false;
-      if (Utils.overRect(backX, backY, backSizeX, backSizeY, mouseX, mouseY)) {
-        overBack = true;
-      } else {
-        overBack = false;
-      }
+      overBack = treasureView.isOverBack();
       break;
   }
 }
